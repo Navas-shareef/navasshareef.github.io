@@ -1,41 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-
+  <!-- Base href will be injected by flutter build -->
+  <base href="/">
 
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Flutter Developer Portfolio - Showcasing cross-platform mobile and web applications built with Flutter and Dart.">
   <meta name="keywords" content="Flutter, Dart, Mobile Development, Web Development, Flutter Developer, Cross-platform Apps">
-  <meta name="author" content="Flutter Developer">
+  <meta name="author" content="Navas Shareef">
 
-  <!-- iOS meta tags & icons -->
+  <!-- PWA / iOS -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Flutter Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <title>Flutter Developer Portfolio</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- ===== SPLASH / LOADER STYLES ===== -->
+  <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0F172A; /* AppColors.dark */
+    font-family: Inter, Arial, sans-serif;
+  }
+
+  #flutter-loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      circle at top,
+      #667EEA 0%,
+      #0F172A 55%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .loader-container {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Logo */
+  .logo {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    background: linear-gradient(
+      135deg,
+      #6366F1,
+      #8B5CF6,
+      #EC4899
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Spinner */
+  .spinner {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.12);
+    border-top-color: #6366F1; /* primary */
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 18px;
+  }
+
+  /* Loading text */
+  .loading-text {
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    opacity: 0.75;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
 </head>
+
 <body>
+  <!-- ===== SPLASH / LOADER ===== -->
+  <div id="flutter-loader">
+    <div class="loader-container">
+      <div class="logo">Please Wait..</div>
+      <div class="spinner"></div>
+      <div class="loading-text">Loading portfolio…</div>
+    </div>
+  </div>
+
+  <!-- ===== FLUTTER BOOTSTRAP ===== -->
   <script src="flutter_bootstrap.js" async></script>
+
+  <!-- ===== REMOVE SPLASH WHEN FLUTTER IS READY ===== -->
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      const loader = document.getElementById('flutter-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => loader.remove(), 400);
+      }
+    });
+  </script>
 </body>
 </html>
