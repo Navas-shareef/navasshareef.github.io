@@ -3,7 +3,7 @@ import 'package:shabio/core/colors.dart';
 import 'package:shabio/widgets/about_section.dart';
 import 'package:shabio/widgets/animated_cursor.dart';
 import 'package:shabio/widgets/contact_section.dart';
-import 'package:shabio/widgets/experience_section.dart';
+import 'package:shabio/widgets/experience_section.dart' hide AppColors;
 import 'package:shabio/widgets/fade_animated_widget.dart';
 import 'package:shabio/widgets/footer.dart';
 import 'package:shabio/widgets/profile_section.dart';
@@ -113,79 +113,82 @@ class _PortfolioHomeState extends State<PortfolioHome>
                       : null,
             ),
             child: SafeArea(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [AppColors.primary, AppColors.secondary],
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.primary.withValues(alpha: 0.3),
-                              blurRadius: 15,
-                              offset: const Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        child: const Text(
-                          'NS',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      if (!isMobile) ...[
-                        const SizedBox(width: 15),
-                        const Text(
-                          'Flutter Developer',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                  if (isMobile)
-                    IconButton(
-                      icon: const Icon(Icons.menu, color: AppColors.dark),
-                      onPressed: () => _showMobileMenu(context),
-                    )
-                  else
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: isMobile ? 8 : 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Row(
                       children: [
-                        AnimatedNavButton(
-                          label: 'Home',
-                          onTap: () => _scrollToSection(_homeKey),
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [AppColors.primary, AppColors.secondary],
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.primary.withValues(alpha: 0.3),
+                                blurRadius: 15,
+                                offset: const Offset(0, 5),
+                              ),
+                            ],
+                          ),
+                          child: const Text(
+                            'NS',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
                         ),
-                        AnimatedNavButton(
-                          label: 'About',
-                          onTap: () => _scrollToSection(_aboutKey),
-                        ),
-                        AnimatedNavButton(
-                          label: 'Skills',
-                          onTap: () => _scrollToSection(_skillsKey),
-                        ),
-                        AnimatedNavButton(
-                          label: 'Projects',
-                          onTap: () => _scrollToSection(_projectsKey),
-                        ),
-                        AnimatedNavButton(
-                          label: 'Contact',
-                          onTap: () => _scrollToSection(_contactKey),
-                        ),
+                        if (!isMobile) ...[
+                          const SizedBox(width: 15),
+                          const Text(
+                            'Flutter Developer',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
-                ],
+                    if (isMobile)
+                      IconButton(
+                        icon: const Icon(Icons.menu, color: Colors.white),
+                        onPressed: () => _showMobileMenu(context),
+                      )
+                    else
+                      Row(
+                        children: [
+                          AnimatedNavButton(
+                            label: 'Home',
+                            onTap: () => _scrollToSection(_homeKey),
+                          ),
+                          AnimatedNavButton(
+                            label: 'About',
+                            onTap: () => _scrollToSection(_aboutKey),
+                          ),
+                          AnimatedNavButton(
+                            label: 'Skills',
+                            onTap: () => _scrollToSection(_skillsKey),
+                          ),
+                          AnimatedNavButton(
+                            label: 'Projects',
+                            onTap: () => _scrollToSection(_projectsKey),
+                          ),
+                          AnimatedNavButton(
+                            label: 'Contact',
+                            onTap: () => _scrollToSection(_contactKey),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -12,21 +12,21 @@ class ExperienceSection extends StatelessWidget {
         company: "BranchX, Bangalore",
         period: "2025 – Nov 2025",
         description:
-            "Building scalable Flutter apps, complex UI systems, platform channels, and performance optimization.",
+            "Building scalable Flutter applications, crafting complex UI systems, implementing native platform channels, and optimizing performance for production use.",
       ),
       Experience(
         role: "Mobile Application Engineer",
         company: "Cinque Technologies, Cochin",
         period: "2022 – 2025",
         description:
-            "Developed cross-platform apps, integrated REST APIs, Firebase, and delivered production apps.",
+            "Developed cross-platform mobile applications, integrated REST APIs and Firebase services, and delivered stable production-ready apps.",
       ),
       Experience(
         role: "Software Engineer",
         company: "Hamon Technologies",
         period: "2021 – 2022",
         description:
-            "Worked on mobile & backend fundamentals, databases, and clean architecture.",
+            "Worked on mobile and backend fundamentals, database design, APIs, and followed clean architecture principles.",
       ),
     ];
 
@@ -35,7 +35,7 @@ class ExperienceSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
+          /// HEADER
           Row(
             children: [
               Container(
@@ -59,18 +59,28 @@ class ExperienceSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 80),
+          const SizedBox(height: 90),
 
-          // Timeline
+          /// TIMELINE
           Stack(
             children: [
               Positioned(
-                left: 00,
+                left: 14,
                 top: 0,
                 bottom: 0,
                 child: Container(
                   width: 2,
-                  color: AppColors.primary.withValues(alpha: 0.25),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        AppColors.primary.withOpacity(0.05),
+                        AppColors.primary.withOpacity(0.35),
+                        AppColors.primary.withOpacity(0.05),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Column(
@@ -85,7 +95,7 @@ class ExperienceSection extends StatelessWidget {
 }
 
 /* ===========================================================
-   TIMELINE ROW (THIS IS THE KEY)
+   TIMELINE ROW
    =========================================================== */
 
 class TimelineRow extends StatelessWidget {
@@ -95,29 +105,42 @@ class TimelineRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 70),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// TIMELINE DOT
+          Container(
+            width: 30,
+            margin: const EdgeInsets.only(top: 28),
+            alignment: Alignment.center,
+            child: Container(
+              width: 12,
+              height: 12,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.primary,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.6),
+                    blurRadius: 16,
+                  ),
+                ],
+              ),
+            ),
+          ),
 
-      children: [
-        // 🌿 CONNECTOR
-        Container(
-          margin: const EdgeInsets.only(top: 40, left: 2),
-          width: 40,
-          height: 2,
-          decoration: BoxDecoration(color: AppColors.primary.withOpacity(0.18)),
-        ),
-
-        const SizedBox(width: 1),
-
-        // 🧾 CARD
-        ExperienceCard(exp: exp),
-      ],
+          /// CARD
+          Expanded(child: ExperienceCard(exp: exp)),
+        ],
+      ),
     );
   }
 }
 
 /* ===========================================================
-   EXPERIENCE CARD
+   EXPERIENCE CARD (REFINED)
    =========================================================== */
 
 class ExperienceCard extends StatelessWidget {
@@ -128,51 +151,63 @@ class ExperienceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 520,
-      margin: const EdgeInsets.only(bottom: 60),
-      padding: const EdgeInsets.all(28),
+      padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: AppColors.primary.withOpacity(0.25)),
+        color: const Color(0xFF0F141F),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.primary.withOpacity(0.18)),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.18),
-            blurRadius: 40,
-            offset: const Offset(0, 18),
+            color: AppColors.primary.withOpacity(0.12),
+            blurRadius: 32,
+            offset: const Offset(0, 16),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// ROLE
           Text(
             exp.role,
             style: const TextStyle(
-              fontSize: 21,
+              fontSize: 22,
               fontWeight: FontWeight.w700,
-              color: Colors.white70,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 6),
+
+          /// COMPANY + PERIOD
           Text(
             "${exp.company} • ${exp.period}",
             style: TextStyle(
               fontSize: 14,
-              color: AppColors.primary.withOpacity(0.85),
+              color: AppColors.primary.withOpacity(0.9),
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 16),
+
+          const SizedBox(height: 18),
+
+          /// DESCRIPTION
           Text(
             exp.description,
-            style: TextStyle(fontSize: 14, height: 1.7, color: Colors.white30),
+            style: const TextStyle(
+              fontSize: 14.5,
+              height: 1.8,
+              color: Colors.white60,
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+/* ===========================================================
+   MODEL
+   =========================================================== */
 
 class Experience {
   final String role;

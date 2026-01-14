@@ -10,57 +10,6 @@ class SkillsSection extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 768;
 
-    final skills = [
-      {
-        'name': 'Flutter',
-        'level': 0.95,
-        'color': AppColors.primary,
-        'icon': Icons.phone_android,
-      },
-      {
-        'name': 'Dart',
-        'level': 0.90,
-        'color': AppColors.secondary,
-        'icon': Icons.code,
-      },
-      {
-        'name': 'Firebase',
-        'level': 0.85,
-        'color': const Color(0xFFFFA726),
-        'icon': Icons.cloud,
-      },
-      {
-        'name': 'REST APIs',
-        'level': 0.90,
-        'color': AppColors.accent,
-        'icon': Icons.api,
-      },
-      {
-        'name': 'State Management',
-        'level': 0.88,
-        'color': AppColors.primary,
-        'icon': Icons.settings,
-      },
-      {
-        'name': 'Git & GitHub',
-        'level': 0.85,
-        'color': Colors.grey.shade700,
-        'icon': Icons.folder_shared,
-      },
-      {
-        'name': 'UI/UX Design',
-        'level': 0.82,
-        'color': AppColors.secondary,
-        'icon': Icons.design_services,
-      },
-      {
-        'name': 'Testing',
-        'level': 0.80,
-        'color': const Color(0xFF10B981),
-        'icon': Icons.bug_report,
-      },
-    ];
-
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -112,7 +61,10 @@ class SkillsTreeSection extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 120, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+        vertical: 120,
+        horizontal: isMobile ? 24 : 200,
+      ),
       decoration: const BoxDecoration(
         gradient: RadialGradient(
           center: Alignment.topCenter,
@@ -124,17 +76,17 @@ class SkillsTreeSection extends StatelessWidget {
         children: [
           _CenterNode(title: "MY SKILLS"),
           const SizedBox(height: 80),
-
-          isMobile
-              ? _MobileSkills()
-              : Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Expanded(child: _SkillColumnLeft()),
-                  SizedBox(width: 120),
-                  Expanded(child: _SkillColumnRight()),
-                ],
-              ),
+          _MobileSkills(),
+          // isMobile
+          //     ? _MobileSkills()
+          //     : Row(
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: const [
+          //         Expanded(child: _SkillColumnLeft()),
+          //         SizedBox(width: 120),
+          //         Expanded(child: _SkillColumnRight()),
+          //       ],
+          //     ),
         ],
       ),
     );
@@ -316,6 +268,14 @@ class _MobileSkills extends StatelessWidget {
     final allSkills = [
       "Flutter",
       "Dart",
+      "Git Version Control",
+      "C#",
+      "Android Studio",
+      "Xcode",
+      "Jira",
+      "SQL Server",
+      "Clean Architecture",
+      "Web API",
       "Firebase",
       "REST API",
       ".netCore",

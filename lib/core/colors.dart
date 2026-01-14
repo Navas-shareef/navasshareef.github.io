@@ -6,7 +6,7 @@ class AppColors {
   static const Color secondary = Color(0xFF8B5CF6); // Purple
   static const Color accent = Color(0xFFEC4899); // Pink
   static const Color dark = Color(0xFF0F172A);
-  static const Color light = Color(0xFFF8FAFC);
+  static Color light = Colors.white.withValues(alpha: 0.7);
   static const Color gradientStart = Color(0xFF667EEA);
   static const Color gradientEnd = Color(0xFF764BA2);
 }

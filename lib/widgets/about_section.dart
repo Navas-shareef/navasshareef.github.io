@@ -65,7 +65,7 @@ class AboutSection extends StatelessWidget {
                   'I am a passionate Flutter developer with expertise in building cross-platform mobile and web applications. With a strong foundation in Dart programming and Flutter framework, I create beautiful, performant, and user-friendly applications.',
                   style: TextStyle(
                     fontSize: isMobile ? 16 : 18,
-                    color: Colors.grey.shade700,
+                    color: AppColors.light,
                     height: 1.8,
                   ),
                 ),
@@ -74,7 +74,7 @@ class AboutSection extends StatelessWidget {
                   'My experience includes developing responsive UI/UX, implementing state management solutions, integrating REST APIs, and deploying applications to both Android and iOS platforms. I am always eager to learn new technologies and improve my skills.',
                   style: TextStyle(
                     fontSize: isMobile ? 16 : 18,
-                    color: Colors.grey.shade700,
+                    color: AppColors.light,
                     height: 1.8,
                   ),
                 ),

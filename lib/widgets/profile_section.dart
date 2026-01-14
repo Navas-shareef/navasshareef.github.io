@@ -1,6 +1,7 @@
 // Hero Section with Animated Background
 import 'package:flutter/material.dart';
 import 'package:shabio/core/asset_constants.dart';
+import 'package:shabio/core/colors.dart';
 import 'package:shabio/tech_icons_painter.dart';
 import 'package:shabio/web_utils_stub.dart' as web_utils;
 import 'package:shabio/widgets/animated_txt.dart';
@@ -74,7 +75,7 @@ class HeroSection extends StatelessWidget {
           height: isMobile ? 190 : 340,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white,
+            color: Colors.white.withValues(alpha: 0.98),
             image: DecorationImage(
               image: AssetImage(AssetConstants.profile),
               fit: BoxFit.scaleDown,
@@ -120,7 +121,7 @@ class HeroSection extends StatelessWidget {
           text:
               'Creating beautiful, performant cross-platform mobile and web applications with Flutter & Dart.',
           fontSize: isMobile ? 16 : 20,
-          color: Colors.white.withValues(alpha: 0.9),
+          color: AppColors.light,
           delay: 400,
         ),
         const SizedBox(height: 50),
