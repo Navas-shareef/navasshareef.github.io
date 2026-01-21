@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shabio/core/asset_constants.dart';
 import 'package:shabio/core/colors.dart';
 import 'package:shabio/widgets/about_section.dart';
 import 'package:shabio/widgets/animated_cursor.dart';
@@ -65,6 +66,13 @@ class _PortfolioHomeState extends State<PortfolioHome>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    precacheImage(const AssetImage(AssetConstants.profile), context);
+  }
+
+  @override
   void dispose() {
     _animationController.dispose();
     _scrollController.dispose();
@@ -88,6 +96,7 @@ class _PortfolioHomeState extends State<PortfolioHome>
     final isMobile = screenWidth < 768;
 
     return SplashCursor(
+      isMobileDevice: isMobile,
       child: Scaffold(
         backgroundColor: Colors.black,
         extendBodyBehindAppBar: true,

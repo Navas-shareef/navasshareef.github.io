@@ -9,7 +9,7 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 768;
+    final isMobile = screenWidth < 900;
 
     final projects = [
       {
@@ -297,36 +297,36 @@ class _ModernProjectCardState extends State<_ModernProjectCard>
                       ),
                     ),
 
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
-                        children:
-                            widget.tech.map((t) {
-                              return Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 15,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: widget.gradient,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  t,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.bottomCenter,
+                    //   child: Wrap(
+                    //     spacing: 10,
+                    //     runSpacing: 10,
+                    //     children:
+                    //         widget.tech.map((t) {
+                    //           return Container(
+                    //             padding: const EdgeInsets.symmetric(
+                    //               horizontal: 15,
+                    //               vertical: 8,
+                    //             ),
+                    //             decoration: BoxDecoration(
+                    //               gradient: LinearGradient(
+                    //                 colors: widget.gradient,
+                    //               ),
+                    //               borderRadius: BorderRadius.circular(20),
+                    //             ),
+                    //             child: Text(
+                    //               t,
+                    //               style: const TextStyle(
+                    //                 fontSize: 12,
+                    //                 color: Colors.white,
+                    //                 fontWeight: FontWeight.w600,
+                    //               ),
+                    //             ),
+                    //           );
+                    //         }).toList(),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

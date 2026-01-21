@@ -6,7 +6,12 @@ import 'package:shabio/core/colors.dart';
 
 class SplashCursor extends StatefulWidget {
   final Widget child;
-  const SplashCursor({super.key, required this.child});
+  final bool isMobileDevice;
+  const SplashCursor({
+    super.key,
+    required this.child,
+    required this.isMobileDevice,
+  });
 
   @override
   State<SplashCursor> createState() => _SplashCursorState();
@@ -25,6 +30,7 @@ class _SplashCursorState extends State<SplashCursor>
   @override
   void initState() {
     super.initState();
+    if (widget.isMobileDevice) return;
     _controller =
         AnimationController(
             vsync: this,
@@ -62,32 +68,34 @@ class _SplashCursorState extends State<SplashCursor>
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      behavior: HitTestBehavior.translucent, // 🔥 REQUIRED
-      onPointerDown: (_) => _spawnSplash(_cursor, burst: true),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.none,
-        onHover: (e) {
-          _target = e.position;
-          _spawnSplash(_target);
-        },
-        child: Stack(
-          children: [
-            widget.child,
-            IgnorePointer(
-              child: CustomPaint(
-                size: MediaQuery.of(context).size,
-                painter: _LiquidPainter(
-                  cursor: _cursor,
-                  speed: _speed,
-                  splashes: _splashes,
+    return widget.isMobileDevice
+        ? widget.child
+        : Listener(
+          behavior: HitTestBehavior.translucent, // 🔥 REQUIRED
+          onPointerDown: (_) => _spawnSplash(_cursor, burst: true),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.none,
+            onHover: (e) {
+              _target = e.position;
+              _spawnSplash(_target);
+            },
+            child: Stack(
+              children: [
+                widget.child,
+                IgnorePointer(
+                  child: CustomPaint(
+                    size: MediaQuery.of(context).size,
+                    painter: _LiquidPainter(
+                      cursor: _cursor,
+                      speed: _speed,
+                      splashes: _splashes,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        );
   }
 
   @override
